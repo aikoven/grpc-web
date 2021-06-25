@@ -14,6 +14,7 @@ import (
 
 	"github.com/desertbit/timer"
 	"golang.org/x/net/http2"
+	"google.golang.org/grpc/grpclog"
 	"nhooyr.io/websocket"
 )
 
@@ -88,6 +89,7 @@ func (w *webSocketResponseWriter) copyFlushedHeaders() {
 }
 
 func (w *webSocketResponseWriter) WriteHeader(code int) {
+	grpclog.Printf("websocket_wrapper Writing header");
 	w.copyFlushedHeaders()
 	w.writtenHeaders = true
 	w.writeHeaderFrame(w.headers)

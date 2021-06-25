@@ -53,6 +53,7 @@ func (w *grpcWebResponse) Write(b []byte) (int, error) {
 }
 
 func (w *grpcWebResponse) WriteHeader(code int) {
+	grpclog.Printf("grpc_web_response Writing header");
 	w.prepareHeaders()
 	w.wrapped.WriteHeader(code)
 	w.wroteHeaders = true
@@ -145,6 +146,7 @@ func (w *base64ResponseWriter) Write(b []byte) (int, error) {
 }
 
 func (w *base64ResponseWriter) WriteHeader(code int) {
+	grpclog.Printf("grpc_web_response base64 Writing header");
 	w.wrapped.WriteHeader(code)
 }
 
